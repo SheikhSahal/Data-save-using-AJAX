@@ -1,0 +1,56 @@
+﻿@model WebApplication1.Models.Employee_ViewModel
+@{
+    ViewBag.Title = "DropDown";
+}
+
+<h2>DropDown</h2>
+
+
+@using (Html.BeginForm("DropDown","Home",FormMethod.Post,new {@id="myform" }))
+{
+<div style="margin-top:3%;">
+    @Html.DropDownListFor(m => m.Departmentid,(IEnumerable<SelectListItem>)ViewData["Show"], "----Select----", new { @class = "form-control" })
+    <br />
+    @Html.TextBoxFor(m => m.Name, new { @class="form-control", @placeholder= "Name" })
+    <br />
+    @Html.TextBoxFor(m => m.Address , new {@class="form-control",@placeholder="Address" })
+    <br />
+    @Html.TextBoxFor(m => m.Sitename, new { @class = "form-control", @placeholder ="Site Name" })
+</div>
+    
+<br />
+<div>
+    <input type="button" class="btn btn-primary" value="Save" id="btnsubmit" />
+    <span id="errormsge" class="collapse">fill all fields</span>
+    <span id="successmsge"></span>
+</div>
+
+}
+
+
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+
+<script>
+    $(document).ready(function () {
+
+        $('#btnsubmit').click(function () {
+
+            var data = $('#myform').serialize();
+            
+
+
+        $.ajax({
+
+            type: "POST",
+            url: "/Home/DropDown",
+            data: data,
+            success: function (response)
+            {
+                alert("Done");
+            }
+
+           })
+       })
+
+    })
+</script>

@@ -1,0 +1,17 @@
+﻿@model WebApplication1.Models.Employee_ViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@foreach (var i in ViewBag.show as List<WebApplication1.Models.Employee_ViewModel> )
+{
+
+    
+   @Html.ActionLink(i.Name,"Details",new { empid = i.id }, new { @class="btn btn-primary" })
+    <br />
+
+    
+}
+
+@Html.ActionLink("Drop Down","DropDown","Home")
